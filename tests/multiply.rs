@@ -36,7 +36,7 @@ use bellman::groth16::{
 
 // demo circuit
 // proving that I know a such that a * 3 = 21
-struct ProofDemo<E: Engine> {
+struct MultiplyDemo<E: Engine> {
     a: Option<E::Fr>,
     b: Option<E::Fr>,
     c: Option<E::Fr>
@@ -45,7 +45,7 @@ struct ProofDemo<E: Engine> {
 // create a demo circuit by using the `Circuit` trait which
 /// is used during paramgen and proving in order to
 /// synthesize the constraint system.
-impl <E: Engine> Circuit<E> for ProofDemo<E> {
+impl <E: Engine> Circuit<E> for MultiplyDemo<E> {
     fn synthesize<CS: ConstraintSystem<E>>(
         self, 
         cs: &mut CS
@@ -81,7 +81,7 @@ impl <E: Engine> Circuit<E> for ProofDemo<E> {
 }
 
 #[test]
-fn test_proof(){
+fn test_multiply(){
     // This may not be cryptographically safe, use
     // `OsRng` (for example) in production software.
     let rng = &mut thread_rng();
@@ -90,7 +90,7 @@ fn test_proof(){
     
     // Create parameters for our circuit
     let params = {
-        let c = ProofDemo::<Bls12> {
+        let c = MultiplyDemo::<Bls12> {
             a: None,
             b: Fr::from_str("3"),
             c: Fr::from_str("21")
@@ -107,7 +107,7 @@ fn test_proof(){
     let out = Fr::from_str("21");
     
     // Create an instance of circuit
-    let c = ProofDemo::<Bls12> {
+    let c = MultiplyDemo::<Bls12> {
         a: Fr::from_str("7"),
         b: Fr::from_str("3"),
         c: out

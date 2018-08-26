@@ -59,7 +59,6 @@ impl <E: Engine> Circuit<E> for CubeDemo<E> {
             x_val.ok_or(SynthesisError::AssignmentMissing)
         })?;
         
-        
         // Allocate: x * x = tmp_1
         let tmp_1_val = x_val.map(|mut e| {
             e.square();
@@ -75,7 +74,6 @@ impl <E: Engine> Circuit<E> for CubeDemo<E> {
             |lc| lc + x,
             |lc| lc + tmp_1
         );
-        
         
         // Allocate: tmp_1 * x = y
         let x_cubed_val = tmp_1_val.map(|mut e| {
@@ -110,6 +108,12 @@ impl <E: Engine> Circuit<E> for CubeDemo<E> {
         );
         // lc is an inner product of all variables with some vector of coefficients
         // bunch of variables added together with some coefficients
+        
+        // usually if mult by 1 can do more efficiently
+        // x2 * x = out - x - 5
+        
+        // mult quadratic constraints 
+        // 
         
         Ok(())
     }
@@ -148,6 +152,6 @@ fn test_cube_proof(){
     assert!(verify_proof(
         &pvk,
         &proof,
-        &[Fr::from_str("34").unwrap()]
+        &[Fr::from_str("35").unwrap()]
     ).unwrap());
 }
