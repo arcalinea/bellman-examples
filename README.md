@@ -1,4 +1,4 @@
 # bellman tutorial 
 
-Examples for (bellman)[https://github.com/zkcrypto/bellman/] zk-SNARKs library.
+Examples of circuits for [bellman](https://github.com/zkcrypto/bellman/) zk-SNARKs library.
 
