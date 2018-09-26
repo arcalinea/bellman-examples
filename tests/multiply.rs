@@ -92,8 +92,10 @@ fn test_multiply(){
     let params = {
         let c = MultiplyDemo::<Bls12> {
             a: None,
-            b: Fr::from_str("3"),
-            c: Fr::from_str("21")
+            // make option values as None for these variables, for paramgen
+            // don't want to bake these nums into parameters
+            b: None,
+            c: None
         };
 
         generate_random_parameters(c, rng).unwrap()
@@ -104,24 +106,23 @@ fn test_multiply(){
 
     println!("Creating proofs...");
     
-    let out = Fr::from_str("21");
+    let public_input = Fr::from_str("21");
     
     // Create an instance of circuit
     let c = MultiplyDemo::<Bls12> {
         a: Fr::from_str("7"),
+        // when creating instance here, pass in Some of actual variables you're using
         b: Fr::from_str("3"),
-        c: out
+        c: public_input
     };
     
     // Create a groth16 proof with our parameters.
     let proof = create_random_proof(c, &params, rng).unwrap();
     
-    let res = out.unwrap();
-    
     assert!(verify_proof(
         &pvk,
         &proof,
-        &[res]
+        &[public_input.unwrap()]
     ).unwrap());
 }
 
