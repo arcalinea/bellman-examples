@@ -3,30 +3,30 @@ extern crate pairing;
 extern crate rand;
 
 // For randomness (during paramgen and proof generation)
-use rand::{thread_rng, Rng};
+use self::rand::{thread_rng};
 
 // Bring in some tools for using pairing-friendly curves
-use pairing::{
+use self::pairing::{
     Engine,
     Field,
     PrimeField
 };
 
 // We're going to use the BLS12-381 pairing-friendly elliptic curve.
-use pairing::bls12_381::{
+use self::pairing::bls12_381::{
     Bls12,
     Fr,
 };
 
 // We'll use these interfaces to construct our circuit.
-use bellman::{
+use self::bellman::{
     Circuit,
     ConstraintSystem,
     SynthesisError
 };
 
 // We're going to use the Groth16 proving system.
-use bellman::groth16::{
+use self::bellman::groth16::{
     Proof,
     generate_random_parameters,
     prepare_verifying_key,
@@ -36,10 +36,10 @@ use bellman::groth16::{
 
 // demo circuit
 // proving that I know a such that a * 3 = 21
-struct MultiplyDemo<E: Engine> {
-    a: Option<E::Fr>,
-    b: Option<E::Fr>,
-    c: Option<E::Fr>
+pub struct MultiplyDemo<E: Engine> {
+    pub a: Option<E::Fr>,
+    pub b: Option<E::Fr>,
+    pub c: Option<E::Fr>
 }
 
 // create a demo circuit by using the `Circuit` trait which

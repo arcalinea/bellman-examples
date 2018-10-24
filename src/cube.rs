@@ -3,30 +3,30 @@ extern crate pairing;
 extern crate rand;
 
 // For randomness (during paramgen and proof generation)
-use rand::{thread_rng, Rng};
+use self::rand::{thread_rng, Rng};
 
 // Bring in some tools for using pairing-friendly curves
-use pairing::{
+use self::pairing::{
     Engine,
     Field,
     PrimeField
 };
 
 // We're going to use the BLS12-381 pairing-friendly elliptic curve.
-use pairing::bls12_381::{
+use self::pairing::bls12_381::{
     Bls12,
     Fr
 };
 
 // We'll use these interfaces to construct our circuit.
-use bellman::{
+use self::bellman::{
     Circuit,
     ConstraintSystem,
     SynthesisError
 };
 
 // We're going to use the Groth16 proving system.
-use bellman::groth16::{
+use self::bellman::groth16::{
     Proof,
     generate_random_parameters,
     prepare_verifying_key,
@@ -36,8 +36,8 @@ use bellman::groth16::{
 
 // proving that I know x such that x^3 + x + 5 == 35
 // Generalized: x^3 + x + 5 == out
-struct CubeDemo<E: Engine> {
-    x: Option<E::Fr>,
+pub struct CubeDemo<E: Engine> {
+    pub x: Option<E::Fr>,
 }
 
 impl <E: Engine> Circuit<E> for CubeDemo<E> {

@@ -1,8 +1,14 @@
-# bellman tutorial 
+# Bellman examples 
 
 Examples of circuits for [bellman](https://github.com/zkcrypto/bellman/), a Rust zk-SNARKs library.
 
-Bellman provides a `Circuit` trait which you can use to synthesize the constraints in your program. 
+Bellman provides a `Circuit` trait which you can use to synthesize the constraints in your program.
+
+`multiply.rs` contains a circuit for the statement "I know `x` and `y` such that `x * y = public_input`"
+ 
+ `cube.rs` contains a circuit for the statement "I know `x` such that `x^3 + x + 5 == 35`"
+ 
+### Constructing a circuit  
 
 To construct a circuit, first flatten your program into its constituent steps. 
 
@@ -14,13 +20,13 @@ The `lc` in the `cs.enforce` function stands for "linear combination", and is an
 
 ### Generating Parameters 
 
-Our examples use the function `generate_random_parameters` to generate a random set of parameters for testing. 
+These examples use the function `generate_random_parameters` to generate a random set of parameters for testing. For real use cases, these parameters would have to be generated securely, through a multi-party computation. 
 
 ### Creating a proof
 
 To create a proof, instantiate a version of the struct that is passed into the circuit, with the inputs to the circuit. 
 
-We used the function `create_random_proof` to create a random groth16 proof. 
+In these examples, the function `create_random_proof` is used to create a random groth16 proof. 
 
 ### Verifying a proof
 
