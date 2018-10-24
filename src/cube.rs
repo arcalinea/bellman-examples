@@ -36,8 +36,8 @@ use self::bellman::groth16::{
 
 // proving that I know x such that x^3 + x + 5 == 35
 // Generalized: x^3 + x + 5 == out
-struct CubeDemo<E: Engine> {
-    x: Option<E::Fr>,
+pub struct CubeDemo<E: Engine> {
+    pub x: Option<E::Fr>,
 }
 
 impl <E: Engine> Circuit<E> for CubeDemo<E> {

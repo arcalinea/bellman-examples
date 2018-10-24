@@ -14,7 +14,7 @@ fn main(){
         create_random_proof, generate_random_parameters, prepare_verifying_key, verify_proof, Proof,
     };
 
-    println!("Hello world");
+    println!("Prove that I know x such that x^3 + x + 5 == 35.");
     
     let rng = &mut thread_rng();
     
@@ -22,12 +22,8 @@ fn main(){
     
     // Create parameters for our circuit
     let params = {
-        let c = multiply::MultiplyDemo::<Bls12> {
-            a: None,
-            // make option values as None for these variables, for paramgen
-            // don't want to bake these nums into parameters
-            b: None,
-            c: None
+        let c = cube::CubeDemo::<Bls12> {
+            x: None
         };
 
         generate_random_parameters(c, rng).unwrap()
@@ -38,22 +34,17 @@ fn main(){
 
     println!("Creating proofs...");
     
-    let public_input = Fr::from_str("21");
-    
     // Create an instance of circuit
-    let c = multiply::MultiplyDemo::<Bls12> {
-        a: Fr::from_str("7"),
-        // when creating instance here, pass in Some of actual variables you're using
-        b: Fr::from_str("3"),
-        c: public_input
+    let c = cube::CubeDemo::<Bls12> {
+        x: Fr::from_str("3")
     };
     
     // Create a groth16 proof with our parameters.
     let proof = create_random_proof(c, &params, rng).unwrap();
-    
+        
     assert!(verify_proof(
         &pvk,
         &proof,
-        &[public_input.unwrap()]
+        &[Fr::from_str("35").unwrap()]
     ).unwrap());
 }
