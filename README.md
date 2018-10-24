@@ -5,9 +5,9 @@ Examples of circuits for [bellman](https://github.com/zkcrypto/bellman/), a Rust
 Bellman provides a `Circuit` trait which you can use to synthesize the constraints in your program.
 
 `multiply.rs` contains a circuit for the statement "I know `x` and `y` such that `x * y = public_input`". 
-- This is the same example used in [Vitalik’s blog post](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649) and [christianlundkvist's libsnark tutorial](https://github.com/christianlundkvist/libsnark-tutorial).
  
  `cube.rs` contains a circuit for the statement "I know `x` such that `x^3 + x + 5 == 35`"
+ - This is the same example used in [Vitalik’s blog post](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649) and [christianlundkvist's libsnark tutorial](https://github.com/christianlundkvist/libsnark-tutorial).
  
 ### Constructing a circuit  
 
