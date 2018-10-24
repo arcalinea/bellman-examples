@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+#![allow(unused_variables)]
 extern crate bellman;
 extern crate pairing;
 extern crate rand;
@@ -5,7 +7,6 @@ use bellman::{Circuit, ConstraintSystem, SynthesisError};
 use pairing::{Engine, Field, PrimeField};
 
 mod cube; 
-mod multiply;
 
 fn main(){
     use pairing::bls12_381::{Bls12, Fr};
