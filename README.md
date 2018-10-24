@@ -35,3 +35,10 @@ To verify a proof, prepare the verifying key by passing in `params.vk` to `prepa
 
 The function `verify_proof` takes the prepared viewing key `pvk`, the `proof`, and the output as an array.
 
+## Running 
+
+`cargo build`
+
+`cargo test` runs test proofs using both example circuits. Tests are located at the bottom of their source files.
+
+`cargo run` runs the `cube.rs` example proof in the main file.
