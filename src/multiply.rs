@@ -59,7 +59,7 @@ impl <E: Engine> Circuit<E> for MultiplyDemo<E> {
             self.a.ok_or(SynthesisError::AssignmentMissing)
         })?;
         
-        // Allocate the second value (public)
+        // Allocate the second value (private)
         let b = cs.alloc(|| "b", || {
             self.b.ok_or(SynthesisError::AssignmentMissing)
         })?;
